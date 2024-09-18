@@ -27,4 +27,4 @@ You can switch between the branches by using `git checkout <name of the branch>`
 
 1. `cd structuralpatterns`
 2. `mvn clean package`
-3. `java -jar target/factorydemo-1.0-SNAPSHOT.jar`
+3. `java -jar target/structuralpatterns-1.0-SNAPSHOT.jar`
