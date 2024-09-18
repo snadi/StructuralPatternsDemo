@@ -3,32 +3,56 @@ package cs.nyuad.se;
 import java.util.HashSet;
 import java.util.Set;
 
+<<<<<<< HEAD
 import cs.nyuad.se.notifications.Notifier;
+=======
+import cs.nyuad.se.notifications.NotifierDecorator;
+import cs.nyuad.se.notifications.SMSDecorator;
+import cs.nyuad.se.notifications.SlackDecorator;
+import cs.nyuad.se.notifications.Notifier;
+import cs.nyuad.se.notifications.FacebookDecorator;
+>>>>>>> 7bc891a (Apply decorator pattern)
 
 public class Main {
 
     private static Set<String> configure(){
         // ask user for types of notifications they want: email, sms, slack
-        Set<String> notifications = new HashSet<String>();
+        Set<String> notificationMethods = new HashSet<String>();
 
         do{
-            System.out.println("Please enter the type of notification you want: sms, slack, facebook. Enter done to finish");
-            String notification = System.console().readLine();
-            if(notification.equals("done")){
+            System.out.println("Please enter the extra type of notification you want: facebook, sms, slack. Enter done to finish");
+            String notificationMethod = System.console().readLine();
+            if(notificationMethod.equals("done")){
                 break;
             }
-            notifications.add(notification);
+            notificationMethods.add(notificationMethod);
         }while(true);
         
-        return notifications;
+        return notificationMethods;
 
     }
 
     public static void main(String[] args) {
-        Set<String> notifications = configure();
+        Set<String> notificationMethods = configure();
 
-        Notifier smsNotifier = new Notifier();
-        smsNotifier.sendEmail("Emergency evacuation. Please leave the building immediately");
+        Notifier notifier = new Notifier();
+
+        for (String notificationMethod : notificationMethods) {
+
+            if (notificationMethod.equals("sms")) {
+                notifier = new SMSDecorator(notifier);
+            }
+            
+            if (notificationMethod.equals("facebook")) {
+                notifier = new FacebookDecorator(notifier);
+            }
+
+            if (notificationMethod.equals("slack")) {
+                notifier = new SlackDecorator(notifier);
+            }
+        }
+
+        notifier.sendNotification("EMERGENCY: The building is on fire");
 
     }
 }
