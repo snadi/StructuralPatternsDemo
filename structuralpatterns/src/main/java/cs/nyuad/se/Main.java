@@ -3,7 +3,7 @@ package cs.nyuad.se;
 import java.util.HashSet;
 import java.util.Set;
 
-import cs.nyuad.se.notifications.SMSNotifier;
+import cs.nyuad.se.notifications.Notifier;
 
 public class Main {
 
@@ -12,7 +12,7 @@ public class Main {
         Set<String> notifications = new HashSet<String>();
 
         do{
-            System.out.println("Please enter the type of notification you want: email, sms, slack. Enter done to finish");
+            System.out.println("Please enter the type of notification you want: sms, slack, facebook. Enter done to finish");
             String notification = System.console().readLine();
             if(notification.equals("done")){
                 break;
@@ -27,8 +27,8 @@ public class Main {
     public static void main(String[] args) {
         Set<String> notifications = configure();
 
-        SMSNotifier smsNotifier = new SMSNotifier();
-        smsNotifier.sendSMS("Emergency evacuation. Please leave the building immediately");
+        Notifier smsNotifier = new Notifier();
+        smsNotifier.sendEmail("Emergency evacuation. Please leave the building immediately");
 
     }
 }
