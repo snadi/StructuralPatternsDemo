@@ -3,15 +3,12 @@ package cs.nyuad.se;
 import java.util.HashSet;
 import java.util.Set;
 
-<<<<<<< HEAD
-import cs.nyuad.se.notifications.Notifier;
-=======
 import cs.nyuad.se.notifications.NotifierDecorator;
 import cs.nyuad.se.notifications.SMSDecorator;
 import cs.nyuad.se.notifications.SlackDecorator;
 import cs.nyuad.se.notifications.Notifier;
 import cs.nyuad.se.notifications.FacebookDecorator;
->>>>>>> 7bc891a (Apply decorator pattern)
+
 
 public class Main {
 
