@@ -1,5 +1,6 @@
 package cs.nyuad.se;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,9 +13,9 @@ import cs.nyuad.se.notifications.FacebookDecorator;
 
 public class Main {
 
-    private static Set<String> configure(){
+    private static ArrayList<String> configure(){
         // ask user for types of notifications they want: email, sms, slack
-        Set<String> notificationMethods = new HashSet<String>();
+        ArrayList<String> notificationMethods = new ArrayList<String>();
 
         do{
             System.out.println("Please enter the extra type of notification you want: facebook, sms, slack. Enter done to finish");
@@ -30,12 +31,11 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Set<String> notificationMethods = configure();
+        ArrayList<String> notificationMethods = configure();
 
         Notifier notifier = new Notifier();
 
         for (String notificationMethod : notificationMethods) {
-            System.out.println("Adding " + notificationMethod + " notification");
 
             if (notificationMethod.equals("sms")) {
                 notifier = new SMSDecorator(notifier);
