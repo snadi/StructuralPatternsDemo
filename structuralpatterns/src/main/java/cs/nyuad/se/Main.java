@@ -35,6 +35,7 @@ public class Main {
         Notifier notifier = new Notifier();
 
         for (String notificationMethod : notificationMethods) {
+            System.out.println("Adding " + notificationMethod + " notification");
 
             if (notificationMethod.equals("sms")) {
                 notifier = new SMSDecorator(notifier);
